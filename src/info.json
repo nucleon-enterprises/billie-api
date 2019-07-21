@@ -1,0 +1,6 @@
+{
+    "allowedCommandTypes": [
+        "pure",
+        "text"
+    ]
+}
