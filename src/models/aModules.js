@@ -14,6 +14,7 @@ const aModulesSchema = new mongoose.Schema({
     },
     accessToken: String,
     port: Number,
+    address: String,
     connectedAt: {
         type: Date,
         default: Date.now
