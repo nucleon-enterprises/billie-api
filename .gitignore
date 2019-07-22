@@ -39,6 +39,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+yarn.lock
 package-lock.json
 jspm_packages/
 
