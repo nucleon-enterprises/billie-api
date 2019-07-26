@@ -10,7 +10,7 @@
 </p>
 
 <h3 align="center">
-  <a href="">[Getting Started](#-requirements)</a>
+  <a href="">Getting Started</a>
   <span> · </span>
   <a href="">Learn the Basics</a>
   <span> · </span>
