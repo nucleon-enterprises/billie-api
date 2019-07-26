@@ -1,26 +1,44 @@
-from fastapi import FastAPI
 from whats import Whats
 from flask import request 
 import json 
 import asyncio
 import requests
-url='localhost'
-app = FastAPI() #Start an instance of FastAPI
-whats = Whats("firefox", "Whatsapp Bot", headless=False, verbose=True) #Start an instance of whatsapp
+import celery
 
-@app.route("/zap", methods=['POST'])
-async def 
 
-def whatsappFlow(request):
+
+from flask import request, url_for
+from flask_api import FlaskAPI, status, exceptions
+
+app = FlaskAPI(__name__)
+
+@celery.task
+def zap():
+    whats = Whats("chrome", "Whatsapp Bot", headless=False, verbose=True) #Start an instance of whatsapp
+
+
+@app.route("/test", methods=['POST', 'GET'])
+def teste():
+    """
+    List or create notes.
+    """
+    zap.delay()
+    body = str(request.data.get('text', ''))
+    return body
+
+
+@app.route("/zap", methods=['POST']) 
+
+def whatsappFlow():
     (chat, last_message) = whats.check_new_message()
     if last_message != "":
         data = {body:last_message}
-        r = request.post(url=url)
-    request.json() #Wait the request parsing to JSON
+        r = requests.post(url=url)
+    await request.json() #Wait the request parsing to JSON
     return request
 
 
-while True:
 
+if __name__ == "__main__":
+    app.run(debug=True)
 
-whats.close()
