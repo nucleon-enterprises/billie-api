@@ -10,7 +10,7 @@
 </p>
 
 <h3 align="center">
-  <a href="">Getting Started</a>
+  <a href="">[Getting Started](#-requirements)</a>
   <span> · </span>
   <a href="">Learn the Basics</a>
   <span> · </span>
@@ -20,3 +20,9 @@
 </h3>
 
   Billie is a virtual assistant integrated with an artificial intelligence, designed to be responsible for all automation systems of all products and services distributed by all Atom companies.
+
+## 📋 Requirements
+
+## 🚀 Upgrading
+
+## 📄 License
