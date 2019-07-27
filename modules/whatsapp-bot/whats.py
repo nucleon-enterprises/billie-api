@@ -60,12 +60,10 @@ class Whats:
         time.sleep(10)
 
         self.change_chat(self.owner_name)
-    
+        print('init completed!')
     def send_message(self, message, chat):
 
         self.print_parser("Sending the message: {}\n to chat: {}".format(message, chat))
-
-        self.change_chat(chat)
 
         # Searching the text box
         textBox = self.driver.find_element_by_xpath("//div[@spellcheck='true']")
@@ -76,15 +74,12 @@ class Whats:
             # Sending the characteres
             textBox.send_keys(message)
         
-        self.change_chat(self.owner_name)
     
     def check_new_message(self):
 
-        self.verbose_parser("Checking for new messages...")
 
-        chat = self.get_first_chat()
+        chat = 'Whatsapp Bot'
 
-        self.change_chat(chat)
 
         # Catching all the audios
         audios = self.driver.find_elements_by_class_name('_2jfIu')
@@ -160,7 +155,6 @@ class Whats:
                         files = os.listdir('audios')
                         for file in files:
                             os.remove('audios/'+file)
-                        self.change_chat(self.owner_name)
                         return (chat, speech)
                     except Exception as e:
                         self.print_parser("Exception: "+str(e), finalize=True, error=True)
@@ -168,7 +162,7 @@ class Whats:
         
 
         # Catching all the messages
-        messages = self.driver.find_elements_by_class_name('_3zb-j')
+        messages = self.driver.find_elements_by_xpath('//span[@class="selectable-text invisible-space copyable-text"]')
         if len(messages) != 0:
             # Supposed new message is the last message
             newMessage = messages[-1].text
@@ -177,15 +171,12 @@ class Whats:
             if newMessage != self.last_message:
                 # We have a new message
                 self.last_message = newMessage
-                self.change_chat(self.owner_name)
                 return (chat, newMessage)
 
             else:
                 # No new message
-                self.change_chat(self.owner_name)
                 return ("","")
         
-        self.change_chat(self.owner_name)
         return ("","")
 
     def get_first_chat(self):
@@ -193,8 +184,8 @@ class Whats:
         # div_//div[@class="2FBdJ"]
         # nome .//span[@dir="auto" and @class="_1wjpf"]
         # horario .//span[@class="_3T2VG"]
-        chats_div = self.driver.find_elements_by_xpath('//div[@class="_2FBdJ"]')
-
+        chats_div = self.driver.find_elements_by_xpath('//*[@id="main"]/div[3]/div/div/div[3]/div[15]/div/div/div[1]')
+        print(*chats_div)
         chats = {}
 
         for chat_div in chats_div:
@@ -203,7 +194,7 @@ class Whats:
             hour = int(hour_string[:2]+hour_string[3:])
 
             chats[chat_name] = hour
-        
+            print(chat_name, chat_div, hour_string, hour)
         max_hour = max(chats.values())
 
         for chat_name, hour in chats.items():
@@ -214,9 +205,9 @@ class Whats:
 
         initial_moment = time.time()
         while True:
-            actual_moment = time.time()
-            if actual_moment - initial_moment > 10:
-                self.print_parser("We can't find {}'s chat.".format(chat), finalize=True, error=True)
+ #           actual_moment = time.time()
+ #           if actual_moment - initial_moment > 10:
+ #               self.print_parser("We can't find {}'s chat.".format(chat), finalize=True, error=True)
             try:
                 user = self.driver.find_element_by_xpath('//span[@title = "{}"]'.format(chat))
                 user.click()
