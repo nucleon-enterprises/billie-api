@@ -198,8 +198,8 @@ class Whats:
         chats = {}
 
         for chat_div in chats_div:
-            chat_name = chat_div.find_element_by_xpath('.//span[@dir="auto" and @class="_1wjpf"]').text
-            hour_string = chat_div.find_element_by_xpath('.//span[@class="_3T2VG"]').text
+            chat_name = chat_div.find_element_by_xpath('//*[@id="pane-side"]/div[1]/div/div/div[3]/div/div/div[2]/div[1]/div[1]/span/span').text
+            hour_string = chat_div.find_element_by_xpath('//*[@id="pane-side"]/div[1]/div/div/div[4]/div/div/div[2]/div[1]/div[2]/span').text
             hour = int(hour_string[:2]+hour_string[3:])
 
             chats[chat_name] = hour

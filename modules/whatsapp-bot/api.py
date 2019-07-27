@@ -1,43 +1,40 @@
 from whats import Whats
-from flask import request 
+from flask import Flask
 import json 
-import asyncio
+from multiprocessing import Process
 import requests
-import celery
-
-
-
 from flask import request, url_for
-from flask_api import FlaskAPI, status, exceptions
+whats = Whats("chrome", "Whatsapp Bot", headless=False, verbose=True)
 
-app = FlaskAPI(__name__)
+def sendMessageToCore(msg):
+    pass
 
-@celery.task
-def zap():
-    whats = Whats("chrome", "Whatsapp Bot", headless=False, verbose=True) #Start an instance of whatsapp
+def zap(whats):
+    while True:
+        (chat, last_message) = whats.check_new_message()
+        if last_message != "" and last_message[0]=='/': #If the new message is a command,
+            sendMessageToCore(last_message)             #send it to core   
+
+zapThread = Process(target=zap, args=([whats])) 
+zapThread.start()
+ 
+homePage='''kkk eae men
+'''
 
 
-@app.route("/test", methods=['POST', 'GET'])
+app = Flask(__name__)
+
+@app.route("/", methods=['GET'])
+def root():
+    return homePage
+
+
+@app.route("/test", methods=['POST'])
 def teste():
-    """
-    List or create notes.
-    """
-    zap.delay()
-    body = str(request.data.get('text', ''))
-    return body
 
-
-@app.route("/zap", methods=['POST']) 
-
-def whatsappFlow():
-    (chat, last_message) = whats.check_new_message()
-    if last_message != "":
-        data = {body:last_message}
-        r = requests.post(url=url)
-    await request.json() #Wait the request parsing to JSON
-    return request
-
-
+    body = str(request.form.get('body'))
+    print('kk eae men  '+body)
+    return homePage
 
 if __name__ == "__main__":
     app.run(debug=True)
