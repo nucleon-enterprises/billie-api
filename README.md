@@ -19,4 +19,10 @@
   <a href="">Support</a>
 </h3>
 
-  Billie is a virtual assistant integrated with artificial intelligence, designed to be responsible for all automation systems of all products and services distributed by all Atom companies.
+  Billie is a virtual assistant integrated with an artificial intelligence, designed to be responsible for all automation systems of all products and services distributed by all Atom companies.
+
+## 📋 Requirements
+
+## 🚀 Upgrading
+
+## 📄 License
