@@ -92,3 +92,4 @@ typings/
 .dynamodb/
 
 .vscode
+src/config/auth.json

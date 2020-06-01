@@ -4,7 +4,8 @@
   "description": "<h1 align=\"center\">   <a href=\"https://facebook.github.io/react-native/\">     Billie   </a> </h1>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,19 @@
   },
   "homepage": "https://github.com/nucleon-enterprises/billie-api#readme",
   "devDependencies": {
-    "cz-conventional-changelog": "^3.2.0"
+    "cz-conventional-changelog": "^3.2.0",
+    "nodemon": "^2.0.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16",
+    "require-dir": "^1.2.0"
   }
 }
