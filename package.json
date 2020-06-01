@@ -1,0 +1,28 @@
+{
+  "name": "billie-api",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\">   <a href=\"https://facebook.github.io/react-native/\">     Billie   </a> </h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nucleon-enterprises/billie-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nucleon-enterprises/billie-api/issues"
+  },
+  "homepage": "https://github.com/nucleon-enterprises/billie-api#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
